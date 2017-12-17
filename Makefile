@@ -3,14 +3,17 @@ CFLAGS = -Wall
 
 build: main
 
-main: main.o
-	$(CC) main.o -o main
+main: main.o input_output.o
+	$(CC) main.o input_output.o -o main
 
-main.o: main.c 	bmp_header.h
+main.o: main.c
 	$(CC) $(CFLAGS) -c main.c 
+
+input_output.o: input_output.c input_output.h
+	$(CC) -c input_output.c	
 
 run:
 	./main
 
 clean:
-	rm -rf .main.o main
+	rm -rf .main.o main input_output.o
