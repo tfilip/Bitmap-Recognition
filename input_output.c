@@ -6,7 +6,7 @@
 #include "def.h"
 
 
-int read(Color *change_to, int *v, int *v_size, FILE *img_b, FILE *bonus_img_b) {
+int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b) {
 
 	char img[IMG_NAME_MAX_LENGTH], bonus_img[IMG_NAME_MAX_LENGTH];
 
@@ -67,14 +67,14 @@ int read(Color *change_to, int *v, int *v_size, FILE *img_b, FILE *bonus_img_b) 
 	//Deschide fisierele binare si setaza numarul de cifre pentru task-ul 3
 
 	*v_size = v_index;
-	img_b = fopen(img, "rb");
+	*img_b = fopen(img, "rb");
 
 	if ( img_b == NULL ) {
 		fprintf(stderr, "ERROR: Can't open file %s\n", img);
 		return -1;
 	}
 
-	bonus_img_b = fopen(bonus_img, "rb");
+	*bonus_img_b = fopen(bonus_img, "rb");
 
 	if ( bonus_img_b == NULL ) {
 		fprintf(stderr, "ERROR: Can't open file %s\n", bonus_img);

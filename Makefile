@@ -16,4 +16,4 @@ run:
 	./main
 
 clean:
-	rm -rf .main.o main input_output.o
+	rm -rf .main.o input_output.o main

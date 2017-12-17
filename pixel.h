@@ -4,4 +4,4 @@ typedef struct
 	short G;
 	short R;
 
-} Color;
+} pixel;
