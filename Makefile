@@ -9,5 +9,8 @@ main: main.o
 main.o: main.c 	bmp_header.h
 	$(CC) $(CFLAGS) -c main.c 
 
+run:
+	./main
+
 clean:
 	rm -rf .main.o main
