@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "bmp_header.h"
 #include "input_output.h"
 #include "def.h"
 
 
-int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b) {
+
+/*
+	Citeste de din fisier si schimba parametrii
+	pentru a putea fi utilizati mai departe
+*/
+char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b) {
 
 	char img[IMG_NAME_MAX_LENGTH], bonus_img[IMG_NAME_MAX_LENGTH];
 
@@ -22,7 +27,7 @@ int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b
 	//Verificare daca a putut deschide fisierul
 	if ( in == NULL ) {
 		fprintf(stderr, "ERROR: Can't open file %s\n", filename);
-		return -1;
+		return NULL;
 	}
 
 	//Citire numele imaginii
@@ -35,9 +40,10 @@ int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b
 
 
 	//Citire culori ce trebuie schimbate
-	fscanf( in, "%hi", &change_to->B );
-	fscanf( in, "%hi", &change_to->G );
-	fscanf( in, "%hi", &change_to->R );
+	fscanf( in, "%d", &change_to->B );
+	fscanf( in, "%d", &change_to->G );
+	fscanf( in, "%d", &change_to->R );
+
 
 	//Trecere la linia urmatoare
 	fgetc(in);
@@ -71,16 +77,39 @@ int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b
 
 	if ( img_b == NULL ) {
 		fprintf(stderr, "ERROR: Can't open file %s\n", img);
-		return -1;
+		return NULL;
 	}
 
 	*bonus_img_b = fopen(bonus_img, "rb");
 
 	if ( bonus_img_b == NULL ) {
 		fprintf(stderr, "ERROR: Can't open file %s\n", bonus_img);
-		return -1;
+		return NULL;
 	}
 
-	return 0;
+	char *a = (char*)(malloc(sizeof(img)));
+	strcpy(a,img);
+	
+	return a;
+
+}
+
+void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,pixel *bmp_data,char *filename){
+
+	//Setez noul nume
+	char new_filename[IMG_NAME_MAX_LENGTH];
+	strcpy(new_filename,filename);
+	char *p2 = strtok(new_filename,".");
+	strcat(p2,"_task1.bmp");
+		
+	
+	FILE *out;
+	out = fopen(p2,"wb");
+	fwrite(&fh,sizeof(struct bmp_fileheader),1,out);
+	fwrite(&ih,sizeof(struct bmp_infoheader),1,out);
+	fseek(out,fh.imageDataOffset,SEEK_SET);
+	fwrite(bmp_data,sizeof(pixel),ih.biSizeImage/3,out);
+	fclose(out);
+
 
 }

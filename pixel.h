@@ -1,7 +1,16 @@
+#include <stdint.h>
+
+#pragma pack(1)
+
+typedef uint8_t byte;
+
 typedef struct
 {
-	short B;
-	short G;
-	short R;
+	byte B;
+	byte G;
+	byte R;
 
 } pixel;
+
+
+#pragma pack()

@@ -1,4 +1,4 @@
 #include <stdio.h>
 #include "pixel.h"
 
-int read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b);
+char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img_b);
