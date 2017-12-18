@@ -94,7 +94,7 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 
 }
 
-void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,pixel *bmp_data,char *filename){
+void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_data,char *filename,int padding){
 
 	//Setez noul nume
 	char new_filename[IMG_NAME_MAX_LENGTH];
@@ -108,7 +108,7 @@ void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,pixel *bmp_da
 	fwrite(&fh,sizeof(struct bmp_fileheader),1,out);
 	fwrite(&ih,sizeof(struct bmp_infoheader),1,out);
 	fseek(out,fh.imageDataOffset,SEEK_SET);
-	fwrite(bmp_data,sizeof(pixel),ih.biSizeImage/3,out);
+	fwrite(bmp_data,sizeof(uint8_t),ih.biSizeImage+ih.height*padding,out);
 	fclose(out);
 
 

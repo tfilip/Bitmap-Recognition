@@ -1,0 +1,22 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"tema3.sublime-project",
+				"main",
+				"checker.sh",
+				"README",
+				"captcha9.bmp",
+				"captcha9_task1.bmp"
+			],
+			"folder_exclude_patterns":
+			[
+				"input",
+				"ref"
+			],
+			"path": "."
+		}
+	]
+}
