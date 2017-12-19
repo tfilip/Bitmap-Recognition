@@ -3,16 +3,89 @@
 	{
 		"selected_items":
 		[
+			[
+				"fre",
+				"free"
+			],
+			[
+				"cha",
+				"change_to"
+			],
+			[
+				"bmp",
+				"bmp_data"
+			],
+			[
+				"bmp_data",
+				"bmp_data_pixels"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "\t",
+			"file": "main.c",
 			"settings":
 			{
-				"buffer_size": 1,
+				"buffer_size": 3520,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "def.h",
+			"settings":
+			{
+				"buffer_size": 54,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "input_output.c",
+			"settings":
+			{
+				"buffer_size": 2301,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "input_output.h",
+			"settings":
+			{
+				"buffer_size": 237,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bmp_header.h",
+			"settings":
+			{
+				"buffer_size": 995,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "input.txt",
+			"settings":
+			{
+				"buffer_size": 41,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nSublimeAStyleFormatter\n----------------------\n\n  SublimeAStyleFormatter\n  ======================\n  \n  SublimeAStyleFormatter is a simple code formatter plugin for Sublime Text 2.\n  It provides ability to format C, C++, C#, and Java files.\n  \n  Usage\n  -----\n  ### Key Bindings\n  The default key bindings for this plugin:\n  \n  **Windows, Linux:**\n  + `ctrl+alt+f`: Format current file\n  + `ctrl+k, ctrl+f`: Format current selection\n  \n  **OSX:**\n  + `ctrl+alt+f`: Format current file\n  + `super+k,super+f`: Format current selection\n  \n  ### Command Palette\n  Open the command palette, it apperas as `SublimeAStyleFormatter: Format Current File`\n  and `SublimeAStyleFormatter Format Current Selection`.\n",
+			"settings":
+			{
+				"buffer_size": 752,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -23,13 +96,25 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 411.0,
+		"height": 612.0,
 		"last_filter": "instal",
 		"selected_items":
 		[
 			[
 				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"themr",
+				"Themr: List themes"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
 			],
 			[
 				"them",
@@ -40,7 +125,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 905.0
+		"width": 994.0
 	},
 	"console":
 	{
@@ -64,6 +149,8 @@
 	],
 	"file_history":
 	[
+		"/home/filip/UPB/PC/Teme/Tema 3/input_output.c",
+		"/home/filip/UPB/PC/Teme/Tema 3/tema3.sublime-project"
 	],
 	"find":
 	{
@@ -98,28 +185,172 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "main.c",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1,
+						"buffer_size": 3520,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1,
-								1
+								2237,
+								2237
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1952.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "def.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 54,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								54,
+								54
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "input_output.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2216,
+								2216
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 288.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "input_output.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								198,
+								198
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "bmp_header.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 995,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "input.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 41,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9,
+								9
+							]
+						],
+						"settings":
+						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -127,6 +358,37 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								752,
+								752
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "/home/filip/UPB/PC/Teme/Tema 3",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -163,6 +425,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -209,7 +475,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 821.0,
+	"side_bar_width": 397.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

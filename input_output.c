@@ -113,3 +113,20 @@ void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_
 
 
 }
+
+
+void print_number(char* filename, int n){
+
+	//Setez noul nume
+	char new_filename[IMG_NAME_MAX_LENGTH];
+	strcpy(new_filename,filename);
+	char *p2 = strtok(new_filename,".");
+	strcat(p2,"_task2.txt");
+
+	FILE *out;
+	out = fopen(p2,"a");
+	fprintf(out, "%d", n);
+	fclose(out);
+
+
+}
