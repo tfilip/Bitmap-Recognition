@@ -6,6 +6,22 @@
 #include "input_output.h"
 #include "def.h"
 
+
+typedef struct {
+
+	int i;
+	int j;
+	int number;
+	pixel color;
+
+} Number;
+
+
+typedef struct {
+	int i;
+	int j;
+} Spot;
+
 void task1_change_colors(pixel change_to, uint8_t* bmp_data, int padding, int height, int width) {
 
 	int i, j;
@@ -39,6 +55,7 @@ void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* f
 
 			if (isZero(bmp_data, padding, width, i, j)) {
 				print_number(filename, 0);
+				delNumber(bmp_data, padding, width, i, j);
 				continue;
 			}
 
@@ -95,6 +112,106 @@ void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* f
 }
 
 
+
+
+void task3(uint8_t* bmp_data, int padding, int height, int width, char* filename, int *numbers, int max) {
+
+
+
+
+	int i, j, l, y;
+	Number nums[101];
+	Spot spots[101];
+	int k = 0, m = 0;
+
+
+	//Pun toate numerele existente intr-un vector
+	for (j = 0; j < 3 * (width - 4); j += 3) {
+		for (i = 0; i < height - 4; i++) {
+			int number = getNumber(bmp_data, padding, width, i, j);
+			if (number != -1) {
+				nums[k].i = i;
+				nums[k].j = j;
+				nums[k].number = number;
+				nums[k].color = getColor(bmp_data, padding, width, i, j);
+				spots[m].i = i;
+				spots[m].j = j;
+				m++;
+				k++;
+				delNumber(bmp_data, padding, width, i, j);
+			}
+		}
+	}
+
+
+
+	//Repun toate numerele ce trebuie sa fie
+	
+	int h = 0;
+	for (l = 0; l < k; l++) {
+		int ok = 1;
+		for (y = 0; y < max; y++) {
+			if (nums[l].number == numbers[y]) {
+				ok = 0;
+			}
+		}
+		if (ok) {
+			switch (nums[l].number) {
+			case 0:
+				drawZero(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 1:
+				drawOne(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 2:
+				drawTwo(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				//	return;
+				h++;
+				break;
+			case 3:
+				drawThree(bmp_data,padding,width,spots[h].i,spots[h].j,nums[l].color);
+				h++;
+				break;
+			case 4:
+				drawFour(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 5:
+				drawFive(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 6:
+				drawSix(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 7:
+				drawSeven(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 8:
+				drawEight(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			case 9:
+				drawNine(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
+				h++;
+				break;
+			}
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
 int main()
 {
 
@@ -103,7 +220,7 @@ int main()
 	FILE *img, *bonus_img;
 	char filename[IMG_NAME_MAX_LENGTH];
 	uint8_t *bmp_data;
-
+	uint8_t *bmp_data_2;
 
 	struct bmp_fileheader fh; //File Header
 	struct bmp_infoheader ih; //Info Header
@@ -128,19 +245,28 @@ int main()
 
 	//Aloc memorie
 	bmp_data = (uint8_t*) malloc(ih.biSizeImage + padding * ih.width);
+	bmp_data_2 = (uint8_t*) malloc(ih.biSizeImage + padding * ih.width);
+
 	//Citesc Datele
 	fread(bmp_data, sizeof(uint8_t), ih.biSizeImage + padding * ih.width, img);
+
+	fseek(img, fh.imageDataOffset, SEEK_SET);
+
+	fread(bmp_data_2, sizeof(uint8_t), ih.biSizeImage + padding * ih.width, img);
 
 
 	//TASK 1
 	task1_change_colors(change_to, bmp_data, padding, ih.height, ih.width);
 
-	write_task1(fh, ih, bmp_data, filename, padding);
+	write_task(fh, ih, bmp_data, filename, padding, 1);
 
 	//TASK 2
 	decode_task2(bmp_data, padding, ih.height, ih.width, filename);
 
-	//write_task1(fh, ih, bmp_data, filename, padding);
+	//TASK 3
+
+	task3(bmp_data_2, padding, ih.height, ih.width, filename, v, v_size);
+	write_task(fh, ih, bmp_data_2, filename, padding, 3);
 
 
 	//Dealocare de memorie pentru fisiere

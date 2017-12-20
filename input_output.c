@@ -61,11 +61,14 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 	char *p = strtok( line, delim );
 
 	while ( p != NULL ) {
+		if(!strcmp(p,"\n"))
+			break;
 		v[v_index] = atoi(p);
 		v_index++;
 		p = strtok(NULL, delim);
 	}
 
+	//v_index--;
 	//Citire fisier bonus
 
 	fgets( bonus_img, IMG_NAME_MAX_LENGTH, in );
@@ -96,13 +99,23 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 
 }
 
-void write_task1(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_data,char *filename,int padding){
+void write_task(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_data,char *filename,int padding, int task){
 
 	//Setez noul nume
 	char new_filename[IMG_NAME_MAX_LENGTH];
 	strcpy(new_filename,filename);
 	char *p2 = strtok(new_filename,".");
-	strcat(p2,"_task1.bmp");
+	switch(task){
+		case 1:
+				strcat(p2,"_task1.bmp");
+				break;
+		case 3:
+				strcat(p2,"_task3.bmp");
+				break;
+		default:
+				break;
+	}
+	
 		
 	
 	FILE *out;
