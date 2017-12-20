@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include "bmp_header.h"
 #include "input_output.h"
 #include "def.h"
+
 
 
 
@@ -40,9 +42,9 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 
 
 	//Citire culori ce trebuie schimbate
-	fscanf( in, "%d", &change_to->B );
-	fscanf( in, "%d", &change_to->G );
-	fscanf( in, "%d", &change_to->R );
+	fscanf( in, "%" SCNu8, &change_to->B );
+	fscanf( in, "%" SCNu8, &change_to->G );
+	fscanf( in, "%" SCNu8, &change_to->R );
 
 
 	//Trecere la linia urmatoare

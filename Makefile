@@ -21,4 +21,4 @@ run:
 	./main
 
 clean:
-	rm -rf .main.o input_output.o main
+	rm -rf .main.o input_output.o numbers.o pixelwork.o main

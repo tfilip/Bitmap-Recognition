@@ -2,12 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-
 #include "bmp_header.h"
 #include "input_output.h"
 #include "def.h"
-#include "numbers.h"
-#include "pixelwork.h"
 
 void task1_change_colors(pixel change_to, uint8_t* bmp_data, int padding, int height, int width) {
 
