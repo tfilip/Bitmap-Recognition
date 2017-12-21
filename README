@@ -1,1 +1,55 @@
+TEPES-ONEA FILIP 312CD
 
+
+	Pe parcursul temei am incercat o modularizare cat mai mare a codului. 
+Astfel am impartit-o in 4 bucati principale. Ce propriu zisa de rezolvare a problemelor 
+in main.c ce utlizeaza celalalte fisiere .c.
+	
+	MAIN:
+
+	Astfel in main se salveaza numele fiserului si de doua ori partea de date deoarce
+o modific prima data la task-ul 1 si a doua oara la task-ul 3 (La task-ul 3 trebuie sa 
+utilizez datele originale din fisierele BMP, nu cele modificate la task-ul 2). Dupa ce
+citesc datele apelez functiile respective task-urilor.
+
+	La task-ul 1, verific fiecare pixel daca este diferit de alb. Daca este diferit de
+alb ii schimb culoarea in culoarea ceruta.
+
+	Pentru task-ul 2, ma duc din pixel in pixel pe coloane si fac verificarea daca de la pixelul
+repectiv incepe o cifra.(coltul din stanga jos pe imagine). Daca gaseste o cifra, o scrie in fisierul 
+cerut si trece la urmatorul pixel.
+
+	In task-ul 3, asemanator task-ului doi salvez fiecare cifra aparuta cu toate
+datele aferente ei si pozitiile pe care se afla cifrele. Dupa ce salvez o cifra in acest mod o sterg de pe 
+imagine. Dupa aceea parcurg vectorul in care am salvate pozitiile cifrelor si le pun doar pe cele ce nu 
+trebuie eliminate.
+
+	NUMBERS:
+	
+	Pentru decodarea cifrelor si crearea acestora ma folosesc de functiile din aceast fisier. Tot aici 
+si afla si functia de stergere a unei cifre. Cifrele le verfic parcurgand matricea de date pe linii si coloane
+in functie de cifra si verficand daca toti pixeli necesari sunt setati, si daca nu are pixeli in plus. Asemanator
+cu verificare parcurg doar pixeli necesari la crearea unei cifre.
+
+
+	PIXELWORK:
+	
+	Aici se regasesc toate functiile ce ajuta la parcurgerea matricei fie pe orizontala fie pe verticala. Se pot
+verifica pixelii sau seta pe verticala si pe orizontala. Functiile au un numar mare de argumente deoarce permit verificarea
+sau crearea din pozitii cat mai complexe. (un anumit numar de pixel si un offset pe verticala sau orizontala).
+
+	INPUT_OUTPUT:
+
+	Am decis implementarea functiilor de citire si de scriere intr-un alt fiser pentru a nu incarca main-ul, si a 
+putea modifica mai usor codul. La citire folosesc "fscanf( in, "%" SCNu8, &change_to->B );" pentru a putea citi o variabila de 
+tip integer pe un singur byte. Aici am utilizat functii din libraria string.h pentru a putea parsa fisierul de intrare
+
+	PIXEL.h
+
+	Este o structura ce este utlizata pe parcursul programului in care salvez valorile pixelilor (B G R). Folosesc tipul
+de date uint8_t pentru ca aceste valori sunt salvate pe un singur byte. 
+
+
+	DEF.H
+	
+	Aici se afla define-uri ce le folosesc atat in main cat si in input_out.

@@ -1,3 +1,5 @@
+//Tepes-Onea Filip 312CD
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -6,22 +8,43 @@
 #include "input_output.h"
 #include "def.h"
 
+/*
+	In main am logica principala
+	din program si realizarea matricei
+	de pixeli, rezolvarea task-urilor
+	cu ajutorul functiilor din celalate
+	fisiere
+*/
 
+/*
+	Folosesc aceasta strucutra pentru
+	taskul 3, sa salvez toate numerele
+	din captcha
+*/
 typedef struct {
-
 	int i;
 	int j;
 	int number;
 	pixel color;
-
 } Number;
 
+/*
+	Structura in care salvez pozitiile
+	pe care se afla numere
 
+*/
 typedef struct {
 	int i;
 	int j;
 } Spot;
 
+/*
+	Functia pentru task-ul 1, de schimbare
+	a culoriilor. Aceasta verifia pixel cu pixel
+	daca este diferit de alb, iar daca este diferit il
+	face in culoarea ceruta
+
+*/
 void task1_change_colors(pixel change_to, uint8_t* bmp_data, int padding, int height, int width) {
 
 	int i, j;
@@ -29,10 +52,12 @@ void task1_change_colors(pixel change_to, uint8_t* bmp_data, int padding, int he
 	for (i = 0; i < height; i++) {
 		for (j = 0; j < width * 3; j += 3) {
 
+			//Verficarea pentru culoarea alb (255,255,255)
 			if (bmp_data[i * (width * 3 + padding) + j] != 255 &&
 			        bmp_data[i * (width * 3 + padding) + j + 1] != 255 &&
 			        bmp_data[i * (width * 3 + padding) + j + 2] != 255) {
 
+				//Modificarea culorii
 				bmp_data[i * (width * 3 + padding) + j] = change_to.B;
 				bmp_data[i * (width * 3 + padding) + j + 1] = change_to.G;
 				bmp_data[i * (width * 3 + padding) + j + 2] =  change_to.R;
@@ -41,11 +66,16 @@ void task1_change_colors(pixel change_to, uint8_t* bmp_data, int padding, int he
 			}
 		}
 	}
-
-
 }
 
+/*
+	Functia aferenta task-ului 2
+	ce parcurge bmp-ul coloana cu coloana
+	de la stanga la dreapta
+	si verfica daca la un pixel incepe
+	o anumita cifra
 
+*/
 void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* filename) {
 
 	int i, j;
@@ -53,9 +83,11 @@ void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* f
 	for (j = 0; j < 3 * (width - 4); j += 3) {
 		for (i = 0; i < height - 4; i++) {
 
+			/* In cazul in care a gasit o anumita cifra
+			nu le mai verifica si pe celalate
+			*/
 			if (isZero(bmp_data, padding, width, i, j)) {
 				print_number(filename, 0);
-				delNumber(bmp_data, padding, width, i, j);
 				continue;
 			}
 
@@ -63,7 +95,6 @@ void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* f
 				print_number(filename, 1);
 				continue;
 			}
-
 
 			if (isTwo(bmp_data, padding, width, i, j)) {
 				print_number(filename, 2);
@@ -104,26 +135,25 @@ void decode_task2(uint8_t* bmp_data, int padding, int height, int width, char* f
 				print_number(filename, 9);
 				continue;
 			}
-
 		}
 	}
-
-
 }
 
+/*
+	Functia pentru task-ul 3.
+	Aceasta pune intr-un vector toate numerele
+	existente in captcha si in alt vector toate pozitiile
+	pe care se aflau acestea. Dupa aceea sterge toate numerele
+	si le pune pe pozitii, in ordine, doar pe cele care nu trebuiesc
+	eliminate
 
-
-
+*/
 void task3(uint8_t* bmp_data, int padding, int height, int width, char* filename, int *numbers, int max) {
-
-
-
 
 	int i, j, l, y;
 	Number nums[101];
 	Spot spots[101];
 	int k = 0, m = 0;
-
 
 	//Pun toate numerele existente intr-un vector
 	for (j = 0; j < 3 * (width - 4); j += 3) {
@@ -143,10 +173,7 @@ void task3(uint8_t* bmp_data, int padding, int height, int width, char* filename
 		}
 	}
 
-
-
 	//Repun toate numerele ce trebuie sa fie
-	
 	int h = 0;
 	for (l = 0; l < k; l++) {
 		int ok = 1;
@@ -171,7 +198,7 @@ void task3(uint8_t* bmp_data, int padding, int height, int width, char* filename
 				h++;
 				break;
 			case 3:
-				drawThree(bmp_data,padding,width,spots[h].i,spots[h].j,nums[l].color);
+				drawThree(bmp_data, padding, width, spots[h].i, spots[h].j, nums[l].color);
 				h++;
 				break;
 			case 4:
@@ -200,17 +227,8 @@ void task3(uint8_t* bmp_data, int padding, int height, int width, char* filename
 				break;
 			}
 		}
-
 	}
-
 }
-
-
-
-
-
-
-
 
 int main()
 {
@@ -269,9 +287,11 @@ int main()
 	write_task(fh, ih, bmp_data_2, filename, padding, 3);
 
 
-	//Dealocare de memorie pentru fisiere
+	//Dealocare de memorie
 	free(img);
 	free(bonus_img);
+	free(bmp_data);
+	free(bmp_data_2);
 
 	return 0;
 }

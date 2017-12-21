@@ -1,3 +1,5 @@
+//Tepes-Onea Filip 312CD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +8,13 @@
 #include "input_output.h"
 #include "def.h"
 
+/*
 
+	Utilizat pentru tot ce tine
+	de scriererea/citirea de fisiere
+	text/fisiere binare
+
+*/
 
 
 /*
@@ -38,7 +46,6 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 
 	//Sterge NEWLINE din capatul numelui
 	strtok(img, "\n");
-
 
 
 	//Citire culori ce trebuie schimbate
@@ -99,6 +106,12 @@ char* read(pixel *change_to, int *v, int *v_size, FILE **img_b, FILE **bonus_img
 
 }
 
+/*
+	Utilizata pentru task-ul 1 si 
+	task-ul 3, aceasta creeaza fisierul imagine
+	cu numele in functie de taskul aferent
+	
+*/
 void write_task(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_data,char *filename,int padding, int task){
 
 	//Setez noul nume
@@ -115,21 +128,27 @@ void write_task(struct bmp_fileheader fh,struct bmp_infoheader ih,uint8_t *bmp_d
 		default:
 				break;
 	}
-	
-		
+			
 	
 	FILE *out;
 	out = fopen(p2,"wb");
+
 	fwrite(&fh,sizeof(struct bmp_fileheader),1,out);
 	fwrite(&ih,sizeof(struct bmp_infoheader),1,out);
-	fseek(out,fh.imageDataOffset,SEEK_SET);
-	fwrite(bmp_data,sizeof(uint8_t),ih.biSizeImage+ih.height*padding,out);
-	fclose(out);
 
+	fseek(out,fh.imageDataOffset,SEEK_SET);
+
+	fwrite(bmp_data,sizeof(uint8_t),ih.biSizeImage+ih.height*padding,out);
+
+	fclose(out);
 
 }
 
-
+/*
+	Utilizata pentru task-ul 2,
+	primeste un nume de fisier si un numar
+	si ii face append in fisierul respectiv
+*/
 void print_number(char* filename, int n){
 
 	//Setez noul nume
